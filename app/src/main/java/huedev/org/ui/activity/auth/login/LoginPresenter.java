@@ -28,7 +28,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         if (username.isEmpty() || password.isEmpty()){
             mView.logicFaild();
         }else {
-            mView.showLoadingIndicator();
             mLoginRepository.login(username, password)
                     .subscribeOn(mSchedulerProvider.io())
                     .observeOn(mSchedulerProvider.ui())
@@ -44,7 +43,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         AppPrefs.getInstance(mContext).putPasswordUser(password);
         AppPrefs.getInstance(mContext).putNameUser(loginResponse.data.getName());
         AppPrefs.getInstance(mContext).putEmailUser(loginResponse.data.getEmail());
-        AppPrefs.getInstance(mContext).putRole(Integer.parseInt(loginResponse.data.getRole()));
         mView.getUser(loginResponse.data);
     }
 

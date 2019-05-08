@@ -7,6 +7,7 @@ import huedev.org.data.repository.DeviceRepository;
 import huedev.org.data.source.remote.response.device.CreateDeviceReponse;
 import huedev.org.data.source.remote.response.device.ListDeviceResponse;
 import huedev.org.utils.rx.BaseSchedulerProvider;
+import io.reactivex.Scheduler;
 
 
 public class DevicePresenter implements DeviceContact.Presenter {
@@ -23,7 +24,7 @@ public class DevicePresenter implements DeviceContact.Presenter {
 
     @Override
     public void tempDevices() {
-        mView.showLoadingIndicator();
+
         deviceRepository.tempDevices()
                 .subscribeOn(baseSchedulerProvider.io())
                 .observeOn(baseSchedulerProvider.ui())
@@ -37,7 +38,7 @@ public class DevicePresenter implements DeviceContact.Presenter {
         if (name.isEmpty() || desc.isEmpty()){
             mView.logicCreateFaild();
         }else {
-            mView.showLoadingIndicator();
+
             deviceRepository.createDevice(name, desc, status, id_type_device, id_computer)
                     .subscribeOn(baseSchedulerProvider.io())
                     .observeOn(baseSchedulerProvider.ui())
@@ -46,6 +47,21 @@ public class DevicePresenter implements DeviceContact.Presenter {
                             err -> handleCreateDeviceFaild(err));
         }
     }
+    // Update
+    @Override
+    public void updateDevice(String name, String desc, int status, int id_type_device, int id_computer) {
+
+    }
+    // Delete
+    @Override
+    public void delDevice(String id) {
+        deviceRepository.deleteDevice(id)
+                .subscribeOn(baseSchedulerProvider.io())
+                .observeOn(baseSchedulerProvider.ui())
+                .subscribe(deviceresponse ->handleDeleteSuccess(),
+                        error -> handleDeleteFail());
+    }
+
 
     private void handleCreateDeviceFaild(Throwable err) {
         mView.showLoginError(err);
@@ -60,10 +76,16 @@ public class DevicePresenter implements DeviceContact.Presenter {
     }
 
     private void handleTempDeviceSuccess(ListDeviceResponse listDeviceResponse) {
-        mView.hideLoadingIndicator();
+
         mView.updateTempDeviceList(listDeviceResponse.deviceList);
     }
+    private void handleDeleteSuccess(){
 
+    }
+
+    private void handleDeleteFail() {
+
+    }
     @Override
     public void setView(DeviceContact.View view) {
         this.mView = view;

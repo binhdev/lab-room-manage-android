@@ -1,5 +1,7 @@
 package huedev.org.ui.activity.main;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -33,6 +35,7 @@ import huedev.org.ui.fragments.room.RoomFragment;
 import huedev.org.ui.activity.user.update.UEditInfoActivity;
 import huedev.org.utils.AppConstants;
 import huedev.org.utils.AppPrefs;
+import huedev.org.utils.helpers.MiddleWare;
 import huedev.org.utils.helpers.StringHelper;
 import huedev.org.utils.navigator.Navigator;
 import huedev.org.utils.rx.SchedulerProvider;
@@ -41,7 +44,7 @@ import huedev.org.utils.rx.SchedulerProvider;
 public class MainActivity extends BaseActivity implements View.OnClickListener,
         NavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemSelectedListener,
-        LogoutContact.View {
+        LogoutContact.View, MiddleWare {
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
@@ -210,12 +213,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
     }
 
     @Override
-    public void showLoadingIndicator() {
+    public void showLoadingIndicator(Dialog dialog) {
 
     }
 
     @Override
-    public void hideLoadingIndicator() {
+    public void hideLoadingIndicator(Dialog dialog) {
 
     }
 
@@ -228,5 +231,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
     public void logout() {
         mDrawerLayout.closeDrawers();
         navigator.startActivity(MainActivity.class);
+    }
+
+    @Override
+    public void handleRole() {
+
     }
 }
