@@ -18,6 +18,6 @@ public interface DeviceContact {
         void tempDevices();
         void createDevice(String name, String desc, int status, int id_type_device, int id_computer);
         void updateDevice(String name, String desc, int status, int id_type_device, int id_computer);
-        void delDevice(int id);
+        void delDevice(String id);
     }
 }

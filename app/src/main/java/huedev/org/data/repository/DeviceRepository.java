@@ -57,7 +57,7 @@ public class DeviceRepository implements
     }
 
     @Override
-    public Single<Void> deleteDevice(int id) {
+    public Single<Void> deleteDevice(String id) {
         return deviceRemoteDataSource.deleteDevice(id);
     }
 }

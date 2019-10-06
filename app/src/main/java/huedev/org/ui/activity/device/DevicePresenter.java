@@ -7,6 +7,7 @@ import huedev.org.data.repository.DeviceRepository;
 import huedev.org.data.source.remote.response.device.CreateDeviceReponse;
 import huedev.org.data.source.remote.response.device.ListDeviceResponse;
 import huedev.org.utils.rx.BaseSchedulerProvider;
+import io.reactivex.Scheduler;
 
 
 public class DevicePresenter implements DeviceContact.Presenter {
@@ -53,9 +54,14 @@ public class DevicePresenter implements DeviceContact.Presenter {
     }
     // Delete
     @Override
-    public void delDevice(int id) {
-
+    public void delDevice(String id) {
+        deviceRepository.deleteDevice(id)
+                .subscribeOn(baseSchedulerProvider.io())
+                .observeOn(baseSchedulerProvider.ui())
+                .subscribe(deviceresponse ->handleDeleteSuccess(),
+                        error -> handleDeleteFail());
     }
+
 
     private void handleCreateDeviceFaild(Throwable err) {
         mView.showLoginError(err);
@@ -73,7 +79,13 @@ public class DevicePresenter implements DeviceContact.Presenter {
 
         mView.updateTempDeviceList(listDeviceResponse.deviceList);
     }
+    private void handleDeleteSuccess(){
 
+    }
+
+    private void handleDeleteFail() {
+
+    }
     @Override
     public void setView(DeviceContact.View view) {
         this.mView = view;

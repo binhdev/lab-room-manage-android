@@ -33,6 +33,6 @@ public interface ApiDevice {
                                              @Field("type_devices_id") int id_type_device,
                                              @Field("computers_id") int id_computer);
 
-    @DELETE("devices{id}")
-    Single<Void> deleteDevice(@Path("id") int id);
+    @DELETE("devices/{id}")
+    Single<Void> deleteDevice(@Path("id") String id);
 }

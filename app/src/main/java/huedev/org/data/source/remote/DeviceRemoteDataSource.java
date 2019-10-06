@@ -45,7 +45,7 @@ public class DeviceRemoteDataSource implements DeviceDataSource.RemoteDataSource
     }
 
     @Override
-    public Single<Void> deleteDevice(int id) {
+    public Single<Void> deleteDevice(String id) {
         return mApiDevice.deleteDevice(id);
     }
 }

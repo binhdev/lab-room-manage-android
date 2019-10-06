@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -110,6 +111,8 @@ public class DeviceActivity extends BaseActivity implements DeviceContact.View,
                     listDevices.add(device);
                 }
             }
+            Log.d("THDEVICESIZE", "updateTempDeviceList: " + listDevices.size());
+            Log.d("THDEVICESIZE", "updateTempDeviceList: " + idComputer);
             recyclerView.setHasFixedSize(true);
             deviceAdapter = new DeviceAdapter(this,listDevices, TDList, CPTList, mDevicePresenter);
             recyclerView.setAdapter(deviceAdapter);

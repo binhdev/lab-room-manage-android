@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -161,9 +162,9 @@ public class DeviceAdapter extends RecyclerSwipeAdapter<DeviceAdapter.ViewHolder
         alertDialog.setPositiveButton("Không", (dialogInterface, i) -> {
             dialogInterface.dismiss();
         });
-
+        Log.d("THWANT", "showAlerDialogDel: "+ mDeviceList.size());
         alertDialog.setNegativeButton("Có", (dialogInterface, i) -> {
-            mDevicePresenter.delDevice(Integer.parseInt(mDeviceList.get(i).getId()));
+            mDevicePresenter.delDevice(mDeviceList.get(position).getId());
         });
 
         alertDialog.show();

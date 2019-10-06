@@ -87,6 +87,4 @@ public class AppPrefs {
         return preferences.getInt(AppConstants.ID_ROLE,AppConstants.ROLE_DEFAULT);
     }
 
-
-
 }

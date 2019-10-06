@@ -11,5 +11,4 @@ public interface ApiTags {
     @POST("tags")
     Single<CreateTagReponse> createTags(@Field("value") String value,
                                         @Field("devices_id") int id_device);
-
 }

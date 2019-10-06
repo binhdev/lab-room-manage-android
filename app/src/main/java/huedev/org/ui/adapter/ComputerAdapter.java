@@ -146,7 +146,7 @@ public class ComputerAdapter extends RecyclerView.Adapter<ComputerAdapter.Comput
     }
 
     public class ComputerViewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvName, tvDetail, tvChildDeviceCpu, tvChildDeviceHD, tvChildDeviceRam;
+        TextView tvName, tvDetail, tvChildDeviceCpu, tvChildDeviceHD, tvChildDeviceRam,tvIdCom;
         ImageButton ibInsivilityDetailComputer, ibEdit, ibDel;
         LinearLayout linearRoomDetail,linearRoomMain,
                 linearChildDetailComputer, linearHandleComputer;
@@ -155,6 +155,7 @@ public class ComputerAdapter extends RecyclerView.Adapter<ComputerAdapter.Comput
         public ComputerViewholder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_nameComputer);
+            tvIdCom = itemView.findViewById(R.id.text_comp_id);
             tvDetail = itemView.findViewById(R.id.tv_describeItemComputer);
             ibInsivilityDetailComputer = itemView.findViewById(R.id.ib_insivilityDetailComputer);
             ibEdit = itemView.findViewById(R.id.ib_editComputer);
@@ -173,6 +174,7 @@ public class ComputerAdapter extends RecyclerView.Adapter<ComputerAdapter.Comput
         public void setData (Computer computer) {
             this.cptItem = computer;
             tvName.setText(computer.getName());
+            tvIdCom.setText(computer.getId());
             Log.e("DEVICELIST", mListDevice.size() + "");
             if (mListDevice.size() > 0) {
                 for (Device device : mListDevice) {
@@ -182,7 +184,7 @@ public class ComputerAdapter extends RecyclerView.Adapter<ComputerAdapter.Comput
                 }
 
                 Log.e("DEVICELIST_CHILD", ListDeviceByCPT.size() + "");
-                if (ListDeviceByCPT.size() > 0){
+                if (ListDeviceByCPT.size() > 2){
                     tvChildDeviceCpu.setText("CPU: " + ListDeviceByCPT.get(0).getName());
                     tvChildDeviceHD.setText("HDD: " + ListDeviceByCPT.get(1).getName());
                     tvChildDeviceRam.setText("Ram: " + ListDeviceByCPT.get(2).getName());
@@ -240,7 +242,7 @@ public class ComputerAdapter extends RecyclerView.Adapter<ComputerAdapter.Comput
                 default:
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConstants.ID_COMPUTER, mListComputer.get(i).getId());
-                    bundle.putString(AppConstants.ID_COMPUTER, mListComputer.get(i).getName());
+                    bundle.putString(AppConstants.ID_COM_NAME, mListComputer.get(i).getName());
                     navigator.startActivity(DeviceActivity.class, bundle);
                     break;
             }

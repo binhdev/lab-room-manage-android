@@ -18,6 +18,6 @@ public interface DeviceDataSource {
         Single<UpdateDeviceReponse> updateDevice(int id, String name,
                                                  String desc, int status,
                                                  int id_type_device, int id_computer);
-        Single<Void> deleteDevice(int id);
+        Single<Void> deleteDevice(String id);
     }
 }

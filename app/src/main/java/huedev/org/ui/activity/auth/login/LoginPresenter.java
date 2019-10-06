@@ -43,7 +43,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         AppPrefs.getInstance(mContext).putPasswordUser(password);
         AppPrefs.getInstance(mContext).putNameUser(loginResponse.data.getName());
         AppPrefs.getInstance(mContext).putEmailUser(loginResponse.data.getEmail());
-        AppPrefs.getInstance(mContext).putRole(Integer.parseInt(loginResponse.data.getRole()));
         mView.getUser(loginResponse.data);
     }
 
