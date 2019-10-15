@@ -111,8 +111,6 @@ public class RoomFragment extends BaseFagment implements RoomContact.View {
                 StringHelper.getStringResourceByName(
                         "logic_faild", getContext()), Toast.LENGTH_SHORT).show();
     }
-
-
     @Override
     public void showLoadingIndicator(Dialog dialog) {
         dialog.show();

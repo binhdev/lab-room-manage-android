@@ -46,11 +46,11 @@ public class StringHelper {
     public static String formatStringRole(int role, Context mContext){
         String sRole;
         if (role== 0){
-            sRole = StringHelper.getStringResourceByName("admin", mContext);
+            sRole = StringHelper.getStringResourceByName("member", mContext);
         }else if (role == 1){
             sRole = StringHelper.getStringResourceByName("technicians", mContext);
         }else {
-            sRole = StringHelper.getStringResourceByName("member", mContext);
+            sRole = StringHelper.getStringResourceByName("admin", mContext);
         }
         return sRole;
     }

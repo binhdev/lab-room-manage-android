@@ -137,11 +137,11 @@ public class UserAdapter extends RecyclerSwipeAdapter<UserAdapter.UserViewHolder
             tvName.setText(user.getName());
             tvEmail.setText(user.getEmail());
             if (user.getRole().equals("0")){
-                sRole = StringHelper.getStringResourceByName("admin", mContext);
+                sRole = StringHelper.getStringResourceByName("member", mContext);
             }else if (user.getRole().equals("1")){
                 sRole = StringHelper.getStringResourceByName("technicians", mContext);
             }else {
-                sRole = StringHelper.getStringResourceByName("member", mContext);
+                sRole = StringHelper.getStringResourceByName("admin", mContext);
             }
             tvRole.setText(sRole);
         }

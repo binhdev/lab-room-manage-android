@@ -3,6 +3,10 @@ package huedev.org.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.List;
+
+import huedev.org.data.model.User;
+
 public class AppPrefs {
     private static AppPrefs instance;
     private SharedPreferences preferences;
@@ -86,5 +90,4 @@ public class AppPrefs {
     public int getRole(){
         return preferences.getInt(AppConstants.ID_ROLE,AppConstants.ROLE_DEFAULT);
     }
-
 }

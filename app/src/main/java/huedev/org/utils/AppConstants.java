@@ -1,7 +1,7 @@
 package huedev.org.utils;
 
 public class AppConstants {
-    public static final String HOST_URL = "http://192.168.1.9/lab-room-manage/public/api/";
+    public static final String HOST_URL = "http://172.20.26.31/lab-room-manage/public/api/";
     public static final String APP_PREFS_NAME = "LAB_ROOM_MANAGE_APP_PREFS";
     public static final String API_TOKEN = "API_TOKEN";
     public static final String API_TOKEN_DEFAULT = "API_TOKEN_DEFAULT";
@@ -21,4 +21,6 @@ public class AppConstants {
     public static final String ID_COMPUTER = "ID_COMPUTER";
     public static final String ID_COM_NAME = "NAME_COMPUTER";
     public static final String ID_ROOM = "ID_ROOM";
+    public static final String ID_USERlIST ="ID_USERLIST";
+    public static final String KEY_DEBUG ="THWANT";
 }

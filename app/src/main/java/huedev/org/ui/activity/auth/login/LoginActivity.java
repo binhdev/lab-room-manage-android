@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import huedev.org.R;
 import huedev.org.data.model.User;
 import huedev.org.data.repository.LoginRepository;
@@ -26,28 +28,24 @@ import huedev.org.utils.rx.SchedulerProvider;
 public class LoginActivity extends BaseActivity implements LoginContract.View, View.OnClickListener {
 
     private LoginContract.Presenter mPresenter;
-
     private EditText etUsername, etPassword;
     private Button btnConfirm;
     private TextView tvRegister;
     Navigator navigator;
 
     String sUsername, sPassword;
+    List<User> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         navigator = new Navigator(this);
-
         etUsername = findViewById(R.id.et_usernameLogin);
         etPassword = findViewById(R.id.et_passwordLogin);
         btnConfirm = findViewById(R.id.btn_gologin);
         tvRegister = findViewById(R.id.tv_registerAccount);
-
         init();
-
         btnConfirm.setOnClickListener(this);
         tvRegister.setOnClickListener(this);
     }
@@ -58,9 +56,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View, V
         mPresenter = new LoginPresenter(this, loginRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
     }
-
-
-
     @Override
     public void showLoadingIndicator(Dialog dialog) {
     }

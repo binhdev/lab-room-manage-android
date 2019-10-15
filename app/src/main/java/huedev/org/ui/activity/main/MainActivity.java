@@ -1,7 +1,6 @@
 package huedev.org.ui.activity.main;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -35,7 +34,6 @@ import huedev.org.ui.fragments.room.RoomFragment;
 import huedev.org.ui.activity.user.update.UEditInfoActivity;
 import huedev.org.utils.AppConstants;
 import huedev.org.utils.AppPrefs;
-import huedev.org.utils.helpers.MiddleWare;
 import huedev.org.utils.helpers.StringHelper;
 import huedev.org.utils.navigator.Navigator;
 import huedev.org.utils.rx.SchedulerProvider;
@@ -44,7 +42,8 @@ import huedev.org.utils.rx.SchedulerProvider;
 public class MainActivity extends BaseActivity implements View.OnClickListener,
         NavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemSelectedListener,
-        LogoutContact.View, MiddleWare {
+        LogoutContact.View
+    {
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
@@ -62,7 +61,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mNavigationView = findViewById(R.id.nav_view);
         mDrawerLayout = findViewById(R.id.dl_main);
         mToolbar = findViewById(R.id.toolbar_main);
@@ -100,7 +98,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
             name = StringHelper.getStringResourceByName("admin", this);
             role = StringHelper.formatStringRole(2, this);
         }
-
+        Log.e("RoleError",role);
         tvNameUSer.setText(name);
         tvPosition.setText(role);
     }
@@ -132,9 +130,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_hometop, menu);
         if (AppPrefs.getInstance(this).getRole() == 2){
-            menu.getItem(0).setVisible(false);
-        }else {
             menu.getItem(0).setVisible(true);
+        }else {
+            menu.getItem(0).setVisible(false);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -233,8 +231,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
         navigator.startActivity(MainActivity.class);
     }
 
-    @Override
-    public void handleRole() {
-
-    }
 }
