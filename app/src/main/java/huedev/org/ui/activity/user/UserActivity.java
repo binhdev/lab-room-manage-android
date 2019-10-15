@@ -73,8 +73,6 @@ public class UserActivity extends BaseActivity implements View.OnClickListener, 
         mUserPresenter.setView(this);
         mRegisterPresenter.setView(this);
         mUserPresenter.users();
-
-
     }
 
     @Override

@@ -25,7 +25,6 @@ public class UserPresenter implements UserContact.Presenter {
     // show list user
     @Override
     public void users() {
-
         mUserRepository.users()
                 .subscribeOn(mBaseSchedulerProvider.io())
                 .observeOn(mBaseSchedulerProvider.ui())
@@ -34,7 +33,6 @@ public class UserPresenter implements UserContact.Presenter {
     }
 
     private void handlerSuccessListUser(ListUserResponse listUserResponse) {
-
         mView.usersList(listUserResponse.userList);
     }
 
